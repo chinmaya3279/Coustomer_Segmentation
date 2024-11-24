@@ -61,7 +61,7 @@ import json
 
 
 # Load dataset
-df = pd.read_csv("data\indian_customer_segmentation_detailed.csv")
+df = pd.read_csv("./data/indian_customer_segmentation_detailed.csv")
 # df = pd.read_csv("data\customer_segmentation_with_clusters.csv")
 
 # Load city coordinates
