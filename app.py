@@ -412,12 +412,15 @@ spending_score_bins = [0, 30, 60, 100]
 spending_labels = ['Low Spending', 'Medium Spending', 'High Spending']
 filtered_df['Spending_Score_Group'] = pd.cut(filtered_df['Spending_Score'], bins=spending_score_bins, labels=spending_labels)
 
+spending_score_group_counts = filtered_df["Spending_Score_Group"].value_counts().reindex(spending_labels, fill_value=0).reset_index()
+spending_score_group_counts.columns = ["Spending_Score_Group", "count"]
+
 spending_score_pie_fig = px.pie(
-    filtered_df['Spending_Score_Group'].value_counts().reset_index(),
-    names='index',
-    values='Spending_Score_Group',
+    spending_score_group_counts,
+    names='Spending_Score_Group',
+    values='count',
     title="Customer Segmentation Based on Spending Score",
-    labels={"index": "Spending Group", "Spending_Score_Group": "Number of Customers"}
+    labels={"Spending_Score_Group": "Spending Group", "count": "Number of Customers"}
 )
 
 # Show the pie chart for customer spending score segmentation
